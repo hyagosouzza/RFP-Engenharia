@@ -236,8 +236,15 @@
     }
 }
 .angular-logo{
-    max-width: 300px;
+    max-width: 100px;
     margin: -50px auto 45px;
+
+    img{
+        width: 100%;
+    }
+}
+.angular-logo-navbar{
+    max-width: 100px;
 
     img{
         width: 100%;
