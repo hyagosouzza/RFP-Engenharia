@@ -47,4 +47,5 @@ export class NavbarComponent implements OnInit {
             this.sidebarClose();
         }
     };
+
 }

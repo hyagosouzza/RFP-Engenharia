@@ -14,6 +14,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NgbdModalComponent } from './components/modal/modal.component';
 import { NgbdModalContent } from './components/modal/modal.component';
+import { ScrollToModule } from 'ng2-scroll-to-el';
 
 import { HomeModule } from './home/home.module';
 import { ServicosComponent } from './servicos/servicos.component';
@@ -32,6 +33,7 @@ import { ServicosComponent } from './servicos/servicos.component';
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
+    ScrollToModule.forRoot(),
     FormsModule,
     RouterModule,
     AppRoutingModule,
