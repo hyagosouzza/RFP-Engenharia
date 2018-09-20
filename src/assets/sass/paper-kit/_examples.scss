@@ -23,7 +23,9 @@
     -ms-flex-pack: center;
 
     .filter::after{
-        background-color: rgba(0, 0, 0, 0.5);
+        background: rgba(20, 30, 48, 0.637);  /* fallback for old browsers */
+background: -webkit-linear-gradient(to top, #141E30, 0, rgba(36, 59, 85, 0.705), 100%);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #141E30, 0, rgba(36, 59, 85, 0.705), 100%); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         content: "";
         display: block;
         height: 100%;
@@ -181,16 +183,16 @@
 }
 
 .presentation-title{
-    font-size: 6em;
-    font-weight: 700;
+    font-size: 3em;
+    font-weight: 600;
     margin: 0;
     color: #FFFFFF;
     // background: #fbf8ec;
-    background: -moz-linear-gradient(to bottom, #FFFFFF 35%, #4e6773 100%);
-    background: -webkit-linear-gradient(to bottom, #FFFFFF 35%,#4e6773 100%);
-    background: -ms-linear-gradient(to bottom, #FFFFFF 35%,#4e6773 100%);
-    background: -o-linear-gradient(to bottom, #FFFFFF 35%,#4e6773 100%);
-    background: linear-gradient(to bottom, #FFFFFF 35%,#4e6773 100%);
+    background: -moz-linear-gradient(to top, orange 35%, yellow 100%);
+    background: -webkit-linear-gradient(to top, orange 35%,yellow 100%);
+    background: -ms-linear-gradient(to top, orange 35%,yellow 100%);
+    background: -o-linear-gradient(to top, orange 35%,yellow 100%);
+    background: linear-gradient(to top, orange 35%,yellow 100%);
 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

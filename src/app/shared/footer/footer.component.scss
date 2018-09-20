@@ -1,0 +1,23 @@
+.color-footer {
+    background: #202020; /* fallback for old browsers */
+    background-image: url("https://www.transparenttextures.com/patterns/always-grey.png");
+}
+
+.color-footer-white {
+    background: rgba(255, 255, 255, 0.4); /* fallback for old browsers */
+    background-image: url("https://www.transparenttextures.com/patterns/always-grey.png");
+}
+
+.local {
+    font-weight: 800;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #202020;
+}
+
+.mbottom15 {
+    margin-bottom: 15%;
+}
+
+@media screen and (min-width: 574px) {
+    .space-financiadores {margin-bottom: 15%;align-self: center;}
+  }
