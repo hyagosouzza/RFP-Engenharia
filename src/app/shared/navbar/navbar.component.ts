@@ -1,5 +1,7 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
-import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { Component, OnInit, ElementRef, Renderer  } from '@angular/core';
+import { Location } from '@angular/common';
+
+declare var $: any
 
 @Component({
     selector: 'app-navbar',
@@ -7,16 +9,28 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
     styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+
     private toggleButton: any;
     private sidebarVisible: boolean;
 
-    constructor(public location: Location, private element : ElementRef) {
+    constructor(private renderer : Renderer, public location: Location, private element : ElementRef) {
         this.sidebarVisible = false;
     }
 
     ngOnInit() {
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
+        var sticky : HTMLElement = this.element.nativeElement.getElementsByClassName('sticky-to-up')[0];
+        this.renderer.listenGlobal('window', 'scroll', (event) => {
+            const number = window.scrollY;
+            if (number > 170 || window.pageYOffset > 170) {
+                // add logic
+                sticky.classList.remove('noshow');
+            } else {
+                // remove logic
+                sticky.classList.add('noshow');
+            }
+        });
     }
     sidebarOpen() {
         const toggleButton = this.toggleButton;
@@ -30,6 +44,7 @@ export class NavbarComponent implements OnInit {
         html.classList.add('nav-open');
 
         this.sidebarVisible = true;
+
     };
     sidebarClose() {
         const html = document.getElementsByTagName('html')[0];
