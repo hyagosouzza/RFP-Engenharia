@@ -31,3 +31,8 @@
 .noshow {
     display: none !important  ;
 }
+
+.disabled {
+    pointer-events: none;
+    opacity: .5;
+}

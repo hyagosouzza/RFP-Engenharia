@@ -132,3 +132,10 @@ blockquote small{
 .title.text-center{
     margin-bottom: 50px;
 }
+
+.card-header.bg-warning {
+    a {
+        color: black !important;
+        font-weight: 600;
+    }
+}

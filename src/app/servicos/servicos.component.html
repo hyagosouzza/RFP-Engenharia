@@ -1,4 +1,4 @@
-<div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/fundo-serv.jpg');">
+<div class="page-header page-header-xs" data-parallax="true" style="background-image: url('http://www.ecolumier.com.br/imagens/energia_solar01.jpg');">
   <div class="filter"></div>
 </div>
 <div class="main">
@@ -12,37 +12,43 @@
         </div>
       </div>
       <br /><br />
-      <div class="row">
-        <div class="col-md-12">
-          <div class="info">
-            <div class="description">
-              <h4 class="info-title">Bombeamento Solar</h4>
-              <p class="description">Spend your time generating new ideas. You don't have to think of implementing.</p>
-              <!-- <a href="#pkp" class="btn btn-link btn-danger">See more</a> -->
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="info">
-            <div class="description">
-              <h4 class="info-title">Grid Tie</h4>
-              <p>Larger, yet dramatically thinner. More powerful, but remarkably power efficient.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="info">
-            <div class="description">
-              <h4 class="info-title">Off Grid</h4>
-              <p>Choose from a veriety of many colors resembling sugar paper pastels.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+        <ngb-panel title="Bombeamento Solar" type="warning">
+          <ng-template ngbPanelContent>
+            A energia solar fotovoltaica utiliza a radiação do sol gerando eletricidade em corrente
+            contínua através dos painéis fotovoltaicos, que alimentam uma bomba de água
+            especialmente desenvolvida para uso conectada diretamente aos painéis, sem a
+            necessidade de baterias. Sempre que houver sol pleno incidindo sobre os painéis, a
+            bomba será acionada.
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel title="GRID-TIE" type="warning">
+          <ng-template ngbPanelContent>
+            <p>São sistemas para geração de energia solar fotovoltaica são caracterizados por estarem
+              integrados a conexão de rede elétrica local. Diferente dos sistemas isolados que atendem
+              a um propósito específico e local, estes sistemas também são capazes de abastecer a
+              rede elétrica com energia que pode ser utilizada por qualquer consumidor da rede.</p>
+            <p>Sistemas de conexão à rede podem ser utilizados tanto para abastecer uma residência,
+              ou então simplesmente produzir e injetar a energia na rede elétrica, assim como uma
+              usina hidroelétrica ou térmica. Se o proprietário do sistema produzir mais energia do
+              que consome, a energia produzida fará com que o medidor “gire para trás”. Quando
+              produzir menos do que consome, o medidor deverá “girar mais devagar”.</p>
+            <p>Do ponto de vista dos componentes, um sistema fotovoltaico grid-tie é composto por
+              painéis solares e inversores. Os inversores grid-tie, além de transformar a corrente
+              contínua em alternada, devem sincronizar o sistema com a rede pública. Por o sistema
+              estar conectado à rede, a falta de energia é compensada pela mesma, o que elimina a
+              necessidade de baterias.</p>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel title="OFF-GRID" type="warning">
+          <ng-template ngbPanelContent>
+            <p>São sistemas isolados para geração de energia solar fotovoltaica onde são caracterizados
+              por não se conectar a rede elétrica da concessionária local. O sistema abastece
+              diretamente os aparelhos que utilizarão a energia e são geralmente construídos com um
+              propósito local e específico.</p>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
     </div>
   </div>
 </div>
