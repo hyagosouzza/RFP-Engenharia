@@ -14,6 +14,7 @@ import { ComponentsModule } from '../components/components.module';
         CommonModule,
         BrowserModule,
         FormsModule,
+        NgbModule,
         RouterModule,
         ComponentsModule
     ],
