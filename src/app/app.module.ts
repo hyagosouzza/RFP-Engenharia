@@ -18,6 +18,7 @@ import { ScrollToModule } from 'ng2-scroll-to-el';
 
 import { HomeModule } from './home/home.module';
 import { ServicosComponent } from './servicos/servicos.component';
+import {NgxMaskModule} from 'ngx-mask'
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ServicosComponent } from './servicos/servicos.component';
     FormsModule,
     RouterModule,
     AppRoutingModule,
-    HomeModule
+    HomeModule,
+    NgxMaskModule.forRoot()
   ],
   entryComponents: [NgbdModalContent],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],

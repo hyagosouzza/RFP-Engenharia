@@ -18,7 +18,7 @@ export class NgbdModalContent {
 export class NgbdModalComponent {
     constructor(private modalService: NgbModal) { }
     open() {
-        const modalRef = this.modalService.open(NgbdModalContent);
+        const modalRef = this.modalService.open(NgbdModalContent, {size: 'lg'});
         modalRef.componentInstance.name = 'World';
     }
 }

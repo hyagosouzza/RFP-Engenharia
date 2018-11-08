@@ -6,6 +6,16 @@
 </div>
 <div class="modal-body">
     <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Gostaria de</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>Zerar o consumo</option>
+                    <option>Reduzir o consumo</option>
+                    <option>Reduzir o consumo de algum(ns) aparelho(s)
+                </select>
+            </div>
+        </div>
         <div class="col-md-8">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Nome ou Razão Social">
@@ -13,11 +23,101 @@
         </div>
         <div class="col-md-4">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="CPF ou CNPJ (em caso de Razão Social)" mask="(000.000.000-00)">
+                <input type="text" class="form-control" placeholder="CPF ou CNPJ" mask="(000.000.000-00)">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Email">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Telefone Fixo (com DDD)" mask="(00) 0000-0000">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Telefone Celular (com DDD)" mask="(00) 0 0000-0000">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Rua">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Bairro">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Número">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Complemento">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="CEP" mask="00000-000">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <select class="form-control">
+                    <option>Goiás (GO)</option>
+                    <option>Acre (AC)</option>
+                    <option>Alagoas (AL)</option>
+                    <option>Amapá (AP)</option>
+                    <option>Amazonas (AM)</option>
+                    <option>Bahia (BA)</option>
+                    <option>Ceará (CE)</option>
+                    <option>Distrito Federal (DF)</option>
+                    <option>Espírito Santo (ES)</option>
+                    <option>Maranhão (MA)</option>
+                    <option>Mato Grosso (MT)</option>
+                    <option>Mato Grosso do Sul (MS)</option>
+                    <option>Minas Gerais (MG)</option>
+                    <option>Pará (PA)</option>
+                    <option>Paraíba (PB)</option>
+                    <option>Paraná (PR)</option>
+                    <option>Pernambuco (PE)</option>
+                    <option>Piauí (PI)</option>
+                    <option>Rio de Janeiro (RJ)</option>
+                    <option>Rio Grande do Norte (RN)</option>
+                    <option>Rio Grande do Sul (RS)</option>
+                    <option>Rondônia (RO)</option>
+                    <option>Roraima (RR)</option>
+                    <option>Santa Catarina (SC)</option>
+                    <option>São Paulo (SP)</option>
+                    <option>Sergipe (SE)</option>
+                    <option>Tocantins (TO)</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Cidade">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Conta de energia</label>
+                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Sua concessionária de Energia Elétrica">
             </div>
         </div>
     </div>
 </div>
+
 <div class="modal-footer">
     <div class="left-side">
         <button type="button" class="btn btn-default btn-link" (click)="activeModal.close('Close click')">Sair</button>
