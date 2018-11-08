@@ -1,7 +1,5 @@
-import { Component, OnInit, ElementRef, Renderer  } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer, Input } from '@angular/core';
 import { Location } from '@angular/common';
-
-declare var $: any
 
 @Component({
     selector: 'app-navbar',
@@ -9,18 +7,18 @@ declare var $: any
     styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-
+    
     private toggleButton: any;
     private sidebarVisible: boolean;
 
-    constructor(private renderer : Renderer, public location: Location, private element : ElementRef) {
+    constructor(private renderer: Renderer, public location: Location, private element: ElementRef) {
         this.sidebarVisible = false;
     }
 
     ngOnInit() {
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
-        var sticky : HTMLElement = this.element.nativeElement.getElementsByClassName('sticky-to-up')[0];
+        var sticky: HTMLElement = this.element.nativeElement.getElementsByClassName('sticky-to-up')[0];
         this.renderer.listenGlobal('window', 'scroll', (event) => {
             const number = window.scrollY;
             if (number > 170 || window.pageYOffset > 170) {
@@ -38,7 +36,7 @@ export class NavbarComponent implements OnInit {
         // console.log(html);
         // console.log(toggleButton, 'toggle');
 
-        setTimeout(function(){
+        setTimeout(function () {
             toggleButton.classList.add('toggled');
         }, 500);
         html.classList.add('nav-open');
