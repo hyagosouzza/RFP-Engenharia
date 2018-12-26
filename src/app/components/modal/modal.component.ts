@@ -7,8 +7,13 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class NgbdModalContent {
     @Input() name;
+    selectedFiles: any;
 
     constructor(public activeModal: NgbActiveModal) { }
+
+    submitForm() {
+        (document.getElementById("contactForm") as HTMLFormElement).submit();
+    }
 }
 
 @Component({
@@ -18,7 +23,7 @@ export class NgbdModalContent {
 export class NgbdModalComponent {
     constructor(private modalService: NgbModal) { }
     open() {
-        const modalRef = this.modalService.open(NgbdModalContent, {size: 'lg'});
+        const modalRef = this.modalService.open(NgbdModalContent, { size: 'lg' });
         modalRef.componentInstance.name = 'World';
     }
 }
