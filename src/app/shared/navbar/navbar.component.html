@@ -2,7 +2,7 @@
     <div class="container">
         <div class="navbar-translate">
             <div class="angular-logo-navbar">
-                <a [routerLink]="['/']"><img src="assets/img/logo-horizontal.png"></a>
+                <img src="assets/img/logo-rfp.png" (click)="homePage()">
             </div>
             <button class="navbar-toggler navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler"
                 aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarToggle()">
@@ -17,10 +17,7 @@
                     <a [routerLink]="['/servicos']" class="nav-link">Serviços</a>
                 </li>
                 <li class="nav-item">
-                    <a [routerLink]="['/landing']" class="nav-link">Empresa</a>
-                </li>
-                <li class="nav-item disabled">
-                    <a class="disabled" href="" class="nav-link">Nossos Projetos</a>
+                    <a [routerLink]="['/empresa']" class="nav-link">Empresa</a>
                 </li>
                 <li class="nav-item">
                     <a style="cursor:pointer;" class="nav-link" [scrollTo]="'#place2'" [scrollDuration]="500">Contate-nos</a>

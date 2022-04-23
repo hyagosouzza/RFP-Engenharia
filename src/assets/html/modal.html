@@ -1,142 +1,104 @@
 <div class="modal-header">
-    <h5 class="modal-title text-center">Orçamento</h5>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-    </button>
+	<h5 class="modal-title text-center">Orçamento</h5>
+	<button type="button" class="close" aria-label="Close" (click)="close()">
+		<span aria-hidden="true">&times;</span>
+	</button>
 </div>
-<ng-container *ngIf="!alertOn; else comalert">
-    <form id="myform" method="post">
-        <div class="modal-body">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>Gostaria de</label>
-                        <select name="desejo" required class="form-control">
-                            <option>Zerar o consumo</option>
-                            <option>Reduzir o consumo</option>
-                            <option>Reduzir o consumo de algum(ns) aparelho(s)</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="form-group">
-                        <input name="nome" required="required" type="text" class="form-control" placeholder="Nome ou Razão Social">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <input name="cpf" required="required" type="text" class="form-control" placeholder="CPF ou CNPJ">
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <input name="email_solicitante" required="required" type="email" class="form-control"
-                            placeholder="Email">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input name="fixo" type="text" class="form-control" placeholder="Telefone Fixo (com DDD)" mask="(00) 0000-0000">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input name="cel" type="text" class="form-control" placeholder="Telefone Celular (com DDD)"
-                            mask="(00) 0 0000-0000">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input name="rua" required="required" type="text" class="form-control" placeholder="Rua">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input name="bairro" required="required" type="text" class="form-control" placeholder="Bairro">
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <input name="n" type="text" class="form-control" placeholder="Número">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input name="complemento" type="text" class="form-control" placeholder="Complemento">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <input name="cep" required="required" type="text" class="form-control" placeholder="CEP" mask="00000-000">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <select name="estado" required="required" class="form-control">
-                            <option>Goiás (GO)</option>
-                            <option>Acre (AC)</option>
-                            <option>Alagoas (AL)</option>
-                            <option>Amapá (AP)</option>
-                            <option>Amazonas (AM)</option>
-                            <option>Bahia (BA)</option>
-                            <option>Ceará (CE)</option>
-                            <option>Distrito Federal (DF)</option>
-                            <option>Espírito Santo (ES)</option>
-                            <option>Maranhão (MA)</option>
-                            <option>Mato Grosso (MT)</option>
-                            <option>Mato Grosso do Sul (MS)</option>
-                            <option>Minas Gerais (MG)</option>
-                            <option>Pará (PA)</option>
-                            <option>Paraíba (PB)</option>
-                            <option>Paraná (PR)</option>
-                            <option>Pernambuco (PE)</option>
-                            <option>Piauí (PI)</option>
-                            <option>Rio de Janeiro (RJ)</option>
-                            <option>Rio Grande do Norte (RN)</option>
-                            <option>Rio Grande do Sul (RS)</option>
-                            <option>Rondônia (RO)</option>
-                            <option>Roraima (RR)</option>
-                            <option>Santa Catarina (SC)</option>
-                            <option>São Paulo (SP)</option>
-                            <option>Sergipe (SE)</option>
-                            <option>Tocantins (TO)</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input name="cidade" required="required" type="text" class="form-control" placeholder="Cidade">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input name="concessio" required="required" type="text" class="form-control" placeholder="Sua concessionária de Energia Elétrica">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input name="kw" required="required" type="text" class="form-control" placeholder="Gasto de kilowatt (kW) mensal">
-                    </div>
-                </div>
-            </div>
-        </div>
+<ng-container *ngIf="!sent; else alertTemplate">
+	<p *ngIf="loading">
+		<ngb-progressbar type="info" [animated]="true" [value]="100" [striped]="true"></ngb-progressbar>
+	</p>
+	<form #form method="post" (submit)="sendEmail(form)">
+		<div class="modal-body">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<label>Gostaria de</label>
+						<select name="desejo" required class="form-control">
+							<option>Zerar o consumo</option>
+							<option>Reduzir o consumo</option>
+							<option>Reduzir o consumo de algum(ns) aparelho(s)</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="form-group">
+						<input name="nome" required="required" type="text" class="form-control" placeholder="Nome ou Razão Social">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<input name="email_solicitante" required="required" type="email" class="form-control"
+							   placeholder="Email">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<input name="cel" type="text" class="form-control" placeholder="Telefone Celular (com DDD)"
+							   mask="(00) 0 0000-0000">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<select name="estado" required="required" class="form-control">
+							<option>Goiás (GO)</option>
+							<option>Acre (AC)</option>
+							<option>Alagoas (AL)</option>
+							<option>Amapá (AP)</option>
+							<option>Amazonas (AM)</option>
+							<option>Bahia (BA)</option>
+							<option>Ceará (CE)</option>
+							<option>Distrito Federal (DF)</option>
+							<option>Espírito Santo (ES)</option>
+							<option>Maranhão (MA)</option>
+							<option>Mato Grosso (MT)</option>
+							<option>Mato Grosso do Sul (MS)</option>
+							<option>Minas Gerais (MG)</option>
+							<option>Pará (PA)</option>
+							<option>Paraíba (PB)</option>
+							<option>Paraná (PR)</option>
+							<option>Pernambuco (PE)</option>
+							<option>Piauí (PI)</option>
+							<option>Rio de Janeiro (RJ)</option>
+							<option>Rio Grande do Norte (RN)</option>
+							<option>Rio Grande do Sul (RS)</option>
+							<option>Rondônia (RO)</option>
+							<option>Roraima (RR)</option>
+							<option>Santa Catarina (SC)</option>
+							<option>São Paulo (SP)</option>
+							<option>Sergipe (SE)</option>
+							<option>Tocantins (TO)</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<input name="cidade" required="required" type="text" class="form-control" placeholder="Cidade">
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="form-group">
+						<input name="concessio" required="required" type="text" class="form-control" placeholder="Sua concessionária de Energia Elétrica">
+					</div>
+				</div>
+			</div>
+		</div>
 
-        <div class="modal-footer">
-
-            <div class="left-side">
-                <button type="button" class="btn btn-danger btn-link" (click)="activeModal.close('Close click')">Sair</button>
-            </div>
-            <div class="divider"></div>
-            <div class="right-side">
-                <button id="enviar" type="submit" class="btn bg-success btn-link" (click)="onSubmitForm()">Enviar</button>
-            </div>
-        </div>
-    </form>
+		<div class="modal-footer">
+			<div class="left-side">
+				<button type="button" class="btn btn-danger btn-link" (click)="close()">Sair</button>
+			</div>
+			<div class="divider"></div>
+			<div class="right-side">
+				<button id="enviar" type="submit" class="btn bg-success btn-link" [disabled]="loading">Enviar</button>
+			</div>
+		</div>
+	</form>
 </ng-container>
-<ng-template #comalert>
-    <div class="modal-body">
-        <p *ngFor="let alert of alerts">
-            <ngb-alert [type]="alert.type" (close)="close(alert)">{{ alert.message }}</ngb-alert>
-        </p>
-    </div>
+<ng-template #alertTemplate>
+	<div class="modal-body">
+		<p>
+			<ngb-alert [type]="alert.type" (close)="closeAlert()">{{ alert.message }}</ngb-alert>
+		</p>
+	</div>
 </ng-template>

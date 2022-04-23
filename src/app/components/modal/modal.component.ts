@@ -1,66 +1,67 @@
-import { Component, Input } from '@angular/core';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
-declare var $: any;
-declare var emailjs: any;
+import {Component} from '@angular/core';
+import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {HttpClient} from '@angular/common/http';
+import {catchError, finalize, map} from 'rxjs/operators';
+import {environment} from '../../../environments/environment';
 
 interface Alert {
     type: string;
     message: string;
 }
 
-const ALERTS: Alert[] = [{
+const ALERT: Alert = {
     type: 'success',
-    message: 'Seu orçamento foi enviado com sucesso, verifique sua Caixa de Entrada!',
-}
-];
+    message: 'Seu orçamento foi enviado, verifique a sua Caixa de Entrada.',
+};
+
 
 @Component({
     selector: 'app-modal-content',
-    templateUrl: '../../../assets/html/modal.html'
+    templateUrl: '../../../assets/html/modal.html',
 })
-export class NgbdModalContent {
-    @Input() name;
+export class ModalContentComponent {
 
-    alerts: Alert[];
-    alertOn: boolean = false;
+    alert = ALERT;
+    sent = false;
+    loading = false;
 
-    constructor(public activeModal: NgbActiveModal) {
+    constructor(
+            private readonly _activeModal: NgbActiveModal,
+            private readonly _httpClient: HttpClient,
+    ) {
         this.reset();
     }
 
-    onSubmitForm() {
-        var that = this;
-        let myform = $("form#myform");
-        myform.submit(function (event) {
-            event.preventDefault();
-
-            // Change to your service ID, or keep using the default service
-            var service_id = "default_service";
-            var template_id = "contact_form";
-
-            $('form').LoadingOverlay("show", {
-                image: "",
-                text: "Enviando seu orçamento...",
-                textColor: '#ffa500'
-            });
-            emailjs.sendForm(service_id, template_id, myform[0])
-                .then(function () {
-                    $('form').LoadingOverlay("hide");
-                    that.alertOn = true;
-                    (document.getElementById('myform') as HTMLFormElement).reset();
-                });
-            return false;
-        });
-
+    sendEmail(form: HTMLFormElement): void {
+        this.loading = true;
+        const formData = new FormData(form);
+        const {apiUrl, templateId, userId, serviceId} = environment.emailjs;
+        formData.append('service_id', serviceId);
+        formData.append('template_id', templateId);
+        formData.append('user_id', userId);
+        this._httpClient.post(apiUrl, formData).pipe(
+                map(response => {
+                    console.log(response);
+                    this.sent = true;
+                }),
+                catchError(err => {
+                    console.log(err);
+                    throw err;
+                }),
+                finalize(() => this.loading = false)
+        ).subscribe();
     }
 
-    close(alert: Alert) {
-        this.alerts.splice(this.alerts.indexOf(alert), 1);
+    closeAlert(): void {
+        this.reset();
     }
 
-    reset() {
-        this.alerts = Array.from(ALERTS);
+    reset(): void {
+        this.sent = false;
+    }
+
+    close(): void {
+        this._activeModal.close();
     }
 
 }
@@ -69,12 +70,11 @@ export class NgbdModalContent {
     selector: 'app-modal-component',
     templateUrl: './modal.component.html'
 })
-export class NgbdModalComponent {
+export class ButtonModalComponent {
 
-    constructor(private modalService: NgbModal) { }
+    constructor(private readonly _modalService: NgbModal) { }
 
     open() {
-        const modalRef = this.modalService.open(NgbdModalContent, { size: 'lg' });
-        modalRef.componentInstance.name = 'World';
+        this._modalService.open(ModalContentComponent, {size: 'lg'});
     }
 }

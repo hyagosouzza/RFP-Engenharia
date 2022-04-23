@@ -1,1 +1,10 @@
-a { color: inherit; } 
+a { color: inherit; }
+
+.sections {
+	display: flex;
+	gap: 10px;
+
+	img {
+		width: 40px;
+	}
+}

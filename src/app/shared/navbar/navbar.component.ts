@@ -1,5 +1,5 @@
-import { Component, OnInit, ElementRef, Renderer, Input } from '@angular/core';
-import { Location } from '@angular/common';
+import {Component, ElementRef, OnInit, Renderer} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-navbar',
@@ -7,18 +7,21 @@ import { Location } from '@angular/common';
     styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-    
+
     private toggleButton: any;
     private sidebarVisible: boolean;
 
-    constructor(private renderer: Renderer, public location: Location, private element: ElementRef) {
+    constructor(
+            private renderer: Renderer,
+            private element: ElementRef,
+            private _router: Router) {
         this.sidebarVisible = false;
     }
 
     ngOnInit() {
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
-        var sticky: HTMLElement = this.element.nativeElement.getElementsByClassName('sticky-to-up')[0];
+        const sticky: HTMLElement = this.element.nativeElement.getElementsByClassName('sticky-to-up')[0];
         this.renderer.listenGlobal('window', 'scroll', (event) => {
             const number = window.scrollY;
             if (number > 170 || window.pageYOffset > 170) {
@@ -30,6 +33,7 @@ export class NavbarComponent implements OnInit {
             }
         });
     }
+
     sidebarOpen() {
         const toggleButton = this.toggleButton;
         const html = document.getElementsByTagName('html')[0];
@@ -44,6 +48,7 @@ export class NavbarComponent implements OnInit {
         this.sidebarVisible = true;
 
     };
+
     sidebarClose() {
         const html = document.getElementsByTagName('html')[0];
         // console.log(html);
@@ -51,6 +56,7 @@ export class NavbarComponent implements OnInit {
         this.sidebarVisible = false;
         html.classList.remove('nav-open');
     };
+
     sidebarToggle() {
         //const toggleButton = this.toggleButton;
         //const body = document.getElementsByTagName('body')[0];
@@ -60,5 +66,9 @@ export class NavbarComponent implements OnInit {
             this.sidebarClose();
         }
     };
+
+    homePage(): void {
+        this._router.navigate(['/']);
+    }
 
 }

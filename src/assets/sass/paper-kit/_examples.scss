@@ -247,9 +247,10 @@ background: linear-gradient(to top, #141E30, 0, rgba(36, 59, 85, 0.705), 100%); 
 }
 .angular-logo-navbar{
     max-width: 100px;
+    cursor: pointer;
 
     img{
-        width: 100%;
+        width: 200px;
     }
 }
 .page-header{
@@ -291,11 +292,5 @@ background: linear-gradient(to top, #141E30, 0, rgba(36, 59, 85, 0.705), 100%); 
                 }
             }
         }
-    }
-}
-
-@media (max-width: 500px){
-    .presentation-title{
-        font-size: 5em;
     }
 }

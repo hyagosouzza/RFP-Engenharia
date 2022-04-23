@@ -1,51 +1,34 @@
 <footer class="footer ">
-    <div class="section color-footer">
-        <div class="container" style="width: 60%">
-            <div class="title text-center text-white">
-                <h3>Parceiros Financeiros</h3>
-                <hr>
-            </div>
-            <div class="row">
-                <div class="space-financiadores col-xs-6  col-sm-3 col-md-2 offset-md-1">
-                    <img src="https://lh3.ggpht.com/8CqgMs2ZGov21ScJtZgx0wpUl9MrjDyvnTRDXfHb6Uf8MfzjgXx6M6BPjWfmY5DyJWA=s180"
-                        class="img-circle img-no-padding img-responsive" alt="d Image">
-                </div>
-                <div class="space-financiadores col-xs-6  col-sm-3 col-md-2 offset-md-1">
-                    <img src="http://www.fenatran.com.br/__novaimages/4028634?v=636431586054130000" class="img-circle img-no-padding img-responsive"
-                        alt="d Image">
-                </div>
-                <div class="space-financiadores col-xs-6  col-sm-3 col-md-2 offset-md-1">
-                    <img src="https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/052015/logomarca_-_goiasfomento_-_vertical_-_cv_1.jpg?itok=ZeS5ylA7"
-                        class="img-circle img-no-padding img-responsive" alt="d Image">
-                </div>
-                <div class="space-financiadores col-xs-6  col-sm-3 col-md-2 offset-md-1">
-                    <img src="assets/img/fco.jpg" class="img-circle img-no-padding img-responsive" alt="d Image">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="section color-footer-white text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3849.3044083075706!2d-51.170711985721375!3d-15.251186413890021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9368ba1b49ac3da1%3A0xd98cdfeae4e94bb8!2sA+Constrular+Materiais+de+Constru%C3%A7%C3%A3o!5e0!3m2!1spt-BR!2sbr!4v1537460362666"
-                        height="350" frameborder="0" style="border:0;width: 100%;" allowfullscreen></iframe>
-                    <p class="local"><i class="fas fa-map-marker-alt"></i> Av. Brasília, Quadra 75 Lote 11, Centro</p>
-                    <p class="local">Britânia - GO, CEP: 76.280-000</p>
-                </div>
-                <div class="col-md-6">
-                    <h2 class="mbottom15" style="font-weight: 500">Contato
-                        <hr>
-                    </h2>
-                    <p><i class="fas fa-phone"></i> (62) 99401-3370</p>
-                    <p><i class="fab fa-whatsapp"></i> (62) 98493-1072</p>
-                    <p class="mbottom15"><i class="fas fa-envelope"></i> RPFENGENHARIAECONSTRUCOES@GMAIL.COM</p>
-                    <a href="https://www.facebook.com/rpfengenhariaoficial" target="_blank" class="btn btn-link btn-just-icon "><i
-                            class="fa fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/rpfengenhariaoficial/" target="_blank" class="btn btn-link btn-just-icon "><i
-                            class="fa fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="section color-footer">
+		<div class="title text-center text-white">
+			<h3>Parceiros Financeiros</h3>
+			<hr>
+		</div>
+		<div class="space-financiadores">
+			<div class="space-financiadores__item" *ngFor="let img of images">
+				<img [width]="img.size" [src]="imgPrefix + img.url">
+			</div>
+		</div>
+	</div>
+	<div class="section color-footer-white text-center">
+		<div class="contact-flex-row">
+			<div class="contact-flex-row__column" *ngFor="let contact of contacts">
+				<div>
+					<iframe [src]="contact.maps" height="350" frameborder="0" style="border:0;width: 100%;" allowfullscreen></iframe>
+					<p class="local"><i class="fas fa-map-marker-alt"></i>{{contact.address}}</p>
+					<p class="local">{{contact.city}}</p>
+				</div>
+				<div>
+					<h2 style="font-weight: 500">Contato
+						<hr>
+					</h2>
+					<p *ngIf="contact.phone"><i class="fas fa-phone"></i>{{contact.phone}}</p>
+					<p><i class="fab fa-whatsapp"></i>{{contact.whatsapp}}</p>
+					<p><i class="fas fa-envelope"></i>{{contact.email}}</p>
+					<a [href]="contact.whatsappLink" target="_blank" class="btn btn-link btn-just-icon social-icons"><i style="font-size: 30px" class="fa fa-whatsapp"></i></a>
+					<a [href]="contact.instagram" target="_blank" class="btn btn-link btn-just-icon social-icons"><i style="font-size: 30px" class="fa fa-instagram"></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
 </footer>

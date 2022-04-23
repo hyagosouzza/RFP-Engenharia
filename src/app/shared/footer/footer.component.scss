@@ -1,23 +1,66 @@
 .color-footer {
-    background: #202020; /* fallback for old browsers */
-    background-image: url("https://www.transparenttextures.com/patterns/always-grey.png");
+	background: #202020; /* fallback for old browsers */
+	background-image: url("/assets/img/always-grey.png");
 }
 
 .color-footer-white {
-    background: white ; /* fallback for old browsers */
-    background-image: url("https://www.transparenttextures.com/patterns/always-grey.png");
+	background: white; /* fallback for old browsers */
+	background-image: url("/assets/img/always-grey.png");
 }
 
 .local {
-    font-weight: 800;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: #66615b;
+	font-weight: 800;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	color: #66615b;
 }
 
-.mbottom15 {
-    margin-bottom: 15%;
+.space-financiadores {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: wrap;
+
+	&__item {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-grow: 1;
+		flex-basis: 300px;
+		margin: 10px;
+		height: 250px;
+		background: rgba(22, 22, 22, .9);
+		border-radius: 10px;
+	}
 }
 
-@media screen and (min-width: 574px) {
-    .space-financiadores {margin-bottom: 15%;align-self: center;}
-  }
+.contact-flex-row {
+	display: flex;
+	flex-wrap: wrap;
+
+	&__column {
+		margin: 10%;
+		flex-grow: 1;
+
+		p {
+			font-size: .8rem;
+
+			i {
+				margin-right: 5px;
+			}
+		}
+	}
+}
+
+
+.social-icons {
+	font-size: 30px !important;
+
+	.fa-whatsapp {
+		color: green;
+	}
+
+	.fa-instagram {
+		color: hotpink;
+	}
+}
