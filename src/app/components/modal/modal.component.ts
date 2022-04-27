@@ -54,6 +54,11 @@ export class ModalContentComponent {
                     console.log(response);
                     this.sent = true;
                 }),
+                catchError(err => {
+                    console.error(err);
+                    this.sent = true;
+                    throw err;
+                }),
                 finalize(() => this.loading = false)
         ).subscribe();
     }
