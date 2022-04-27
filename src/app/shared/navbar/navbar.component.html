@@ -2,7 +2,7 @@
     <div class="container">
         <div class="navbar-translate">
             <div class="angular-logo-navbar">
-                <img src="assets/img/logo-rfp.png" (click)="homePage()">
+                <img [width]="logo.width" [src]="logo.url" (click)="homePage()">
             </div>
             <button class="navbar-toggler navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler"
                 aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarToggle()">

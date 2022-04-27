@@ -1,6 +1,21 @@
 import {Component, ElementRef, OnInit, Renderer} from '@angular/core';
 import {Router} from '@angular/router';
 
+const PREFIX_URL = 'assets/img/';
+const WHITE_LOGO: Logo = {
+    url: PREFIX_URL + 'white-logo.png',
+    width: 250,
+};
+const COLORED_LOGO: Logo = {
+    url: PREFIX_URL + 'logo-rfp.png',
+    width: 200,
+};
+
+interface Logo {
+    url: string,
+    width: number,
+}
+
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
@@ -10,6 +25,8 @@ export class NavbarComponent implements OnInit {
 
     private toggleButton: any;
     private sidebarVisible: boolean;
+
+    logo = WHITE_LOGO;
 
     constructor(
             private renderer: Renderer,
@@ -26,9 +43,11 @@ export class NavbarComponent implements OnInit {
             const number = window.scrollY;
             if (number > 170 || window.pageYOffset > 170) {
                 // add logic
+                this.logo = COLORED_LOGO;
                 sticky.classList.remove('noshow');
             } else {
                 // remove logic
+                this.logo = WHITE_LOGO;
                 sticky.classList.add('noshow');
             }
         });
