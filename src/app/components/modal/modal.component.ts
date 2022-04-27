@@ -9,11 +9,16 @@ interface Alert {
     message: string;
 }
 
-const ALERT: Alert = {
+const ALERT_SUCCESS: Alert = {
     type: 'success',
-    message: 'Seu orçamento foi enviado, verifique a sua Caixa de Entrada.',
+    message: 'Seu orçamento foi enviado, verifique a sua Caixa de Entrada',
 };
 
+
+const ALERT_ERROR: Alert = {
+    type: 'danger',
+    message: 'Ocorreu um erro ao enviar o seu orçamento, tente novamente mais tarde ou entre em contato',
+};
 
 @Component({
     selector: 'app-modal-content',
@@ -21,8 +26,12 @@ const ALERT: Alert = {
 })
 export class ModalContentComponent {
 
-    alert = ALERT;
+    alertSuccess = ALERT_SUCCESS;
     sent = false;
+
+    error = false;
+    alertError = ALERT_ERROR;
+
     loading = false;
 
     constructor(
@@ -33,6 +42,7 @@ export class ModalContentComponent {
     }
 
     sendEmail(form: HTMLFormElement): void {
+        this.reset();
         this.loading = true;
         const formData = new FormData(form);
         const {apiUrl, templateId, userId, serviceId} = environment.emailjs;
@@ -44,20 +54,13 @@ export class ModalContentComponent {
                     console.log(response);
                     this.sent = true;
                 }),
-                catchError(err => {
-                    console.log(err);
-                    throw err;
-                }),
                 finalize(() => this.loading = false)
         ).subscribe();
     }
 
-    closeAlert(): void {
-        this.reset();
-    }
-
     reset(): void {
         this.sent = false;
+        this.error = false;
     }
 
     close(): void {

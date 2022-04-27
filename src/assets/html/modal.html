@@ -4,7 +4,7 @@
 		<span aria-hidden="true">&times;</span>
 	</button>
 </div>
-<ng-container *ngIf="!sent; else alertTemplate">
+<ng-container>
 	<p *ngIf="loading">
 		<ngb-progressbar type="info" [animated]="true" [value]="100" [striped]="true"></ngb-progressbar>
 	</p>
@@ -81,6 +81,15 @@
 						<input name="concessio" required="required" type="text" class="form-control" placeholder="Sua concessionária de Energia Elétrica">
 					</div>
 				</div>
+				<div class="col-md-12">
+					<p *ngIf="sent">
+						<ngb-alert [type]="alertSuccess.type" [dismissible]="false">{{ alertSuccess.message }}</ngb-alert>
+					</p>
+
+					<p *ngIf="error">
+						<ngb-alert [type]="alertError.type" [dismissible]="false">{{ alertError.message }}</ngb-alert>
+					</p>
+				</div>
 			</div>
 		</div>
 
@@ -95,10 +104,3 @@
 		</div>
 	</form>
 </ng-container>
-<ng-template #alertTemplate>
-	<div class="modal-body">
-		<p>
-			<ngb-alert [type]="alert.type" (close)="closeAlert()">{{ alert.message }}</ngb-alert>
-		</p>
-	</div>
-</ng-template>
